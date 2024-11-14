@@ -38,8 +38,8 @@ jobs:
       - name: Build and push images
         uses: docker/build-push-action@v5
         with:
-          context: ./front
-          file: ./front/Dockerfile.prod
+          context: ./frontend
+          file: ./frontend/Dockerfile
           platforms: linux/amd64,linux/arm64
           target: ${{ env.REPOSITORY }}
           push: true
