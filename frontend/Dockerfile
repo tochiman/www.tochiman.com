@@ -7,7 +7,7 @@ USER node:node
 WORKDIR /app/frontend
 
 COPY --chown=node:node package.json yarn.lock ./
-RUN yarn install --no-progress --frozen-lockfile
+RUN yarn install --no-progress --frozen-lockfile --network-timeout 1000000
 
 EXPOSE 3000
 
