@@ -13,7 +13,7 @@ spec:
         app: tochiman-com-deploy
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: tochiman-com
+        image: ghcr.io/tochiman/www.tochiman.com/front-image:develop
         ports:
           - containerPort: 3000

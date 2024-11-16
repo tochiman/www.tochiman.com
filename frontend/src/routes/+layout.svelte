@@ -26,7 +26,7 @@
 
 <header class="relative z-10">
 	<Navbar rounded color="form">
-		<NavBrand href="https://www.tochiman.com">
+		<NavBrand href="/">
 			<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">tochiman.com</span>
 		</NavBrand>
 		<div class="flex md:order-2">
@@ -47,7 +47,7 @@
 <footer>
 	<Footer footerType="logo">
 		<div class="sm:flex sm:items-center sm:justify-between">
-			<FooterBrand href="https://www.tochiman.com" name="tochiman.com" />
+			<FooterBrand href="/" name="tochiman.com" />
 			<FooterLinkGroup ulClass="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
 				<FooterLink href="/">Home</FooterLink>
 				<FooterLink href="/profile">Profile</FooterLink>

@@ -5,7 +5,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: tochiman-com-svc
+    app: tochiman-com-deploy
   ports:
     - protocol: TCP
       port: 80
