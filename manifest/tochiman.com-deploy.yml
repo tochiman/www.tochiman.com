@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: tochiman-com
-        image: ghcr.io/tochiman/www.tochiman.com/front-image:develop
+        image: ghcr.io/tochiman/www.tochiman.com/front-image:main
         ports:
           - containerPort: 3000
