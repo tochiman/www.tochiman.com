@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tochiman-com-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tochiman-com-deploy
+  template:
+    metadata:
+      labels:
+        app: tochiman-com-deploy
+    spec:
+      containers:
+      - name: tochiman-com
+        image: ghcr.io/tochiman/www.tochiman.com/front-image:main
+        ports:
+          - containerPort: 3000
