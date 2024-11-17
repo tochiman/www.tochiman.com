@@ -1,0 +1,21 @@
+FROM node:20.11-slim AS build
+
+# USER node:node 
+WORKDIR /app/frontend
+
+COPY . .
+RUN yarn install --frozen-lockfile --network-timeout 1000000 && yarn build && \
+    rm -rf node_modules && yarn install --frozen-lockfile --prod --network-timeout 1000000
+
+FROM gcr.io/distroless/nodejs18-debian12:nonroot AS prod
+
+WORKDIR /app
+ENV HOST=0.0.0.0
+ENV PORT=3000
+EXPOSE 3000
+
+COPY --from=build --chown=nonroot:nonroot /app/frontend/build/ /app/build/
+COPY --from=build --chown=nonroot:nonroot /app/frontend/node_modules/ /app/node_modules/
+COPY --from=build --chown=nonroot:nonroot /app/frontend/package.json /app/
+
+CMD ["build"]

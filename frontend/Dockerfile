@@ -11,4 +11,4 @@ RUN yarn install --no-progress --frozen-lockfile --network-timeout 1000000
 
 EXPOSE 3000
 
-CMD [ "yarn", "dev" ]
+CMD [ "yarn", "run", "dev" ]

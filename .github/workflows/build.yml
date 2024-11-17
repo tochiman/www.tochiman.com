@@ -1,10 +1,15 @@
 name: Docker Build and Push
 
 on:
-  push:
-    branches:
-      - main
-      - develop
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: デプロイする環境
+        required: true
+        options:
+          - 開発
+          - 本番
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -14,7 +19,11 @@ env:
   REGISTRY: ghcr.io
   USER: tochiman
   IMAGE_NAME_FRONT: front-image
-
+  FILE: |-
+    ${{ fromJSON('{
+      "開発": "Dockerfile",
+      "本番": "Dockerfile.prod"
+    }')[github.event.inputs.environment] }}
 jobs:
   front-build-and-push:
     runs-on: arc-tochiman-web
@@ -39,8 +48,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./frontend
-          file: ./frontend/Dockerfile
+          file: ./frontend/${{ env.file }}
           platforms: linux/amd64,linux/arm64
-          target: ${{ env.REPOSITORY }}
+          # target: ${{ env.REPOSITORY }}
           push: true
           tags: ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME_FRONT }}:${{ github.ref_name }} 
